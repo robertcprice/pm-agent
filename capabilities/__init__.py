@@ -22,6 +22,7 @@ from .testing import TestCapability
 from .monitoring import MonitoringCapability
 from .deployment import DeploymentCapability
 from .filewatch import FileWatchCapability
+from .analyzer import ProjectAnalyzer, ProjectAnalysis, analyze_project
 
 __all__ = [
     "DockerCapability",
@@ -31,4 +32,7 @@ __all__ = [
     "MonitoringCapability",
     "DeploymentCapability",
     "FileWatchCapability",
+    "ProjectAnalyzer",
+    "ProjectAnalysis",
+    "analyze_project",
 ]
