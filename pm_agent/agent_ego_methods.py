@@ -86,7 +86,7 @@ async def _review_task_with_ego_adapter(self, task):
 
     # Get Claude Code result from task
     # Reconstruct result from task data
-    from ..tools.claude_code import ClaudeCodeResult
+    from .claude_code import ClaudeCodeResult
     result = ClaudeCodeResult(
         success=task.status.value not in ["failed", "escalated"],
         files_modified=task.files_modified,

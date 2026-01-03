@@ -24,7 +24,7 @@ from .task_queue import (
     TaskStatus, GoalStatus, TaskPriority, Escalation
 )
 from .notifications import NotificationManager, NotificationConfig
-from ..tools.claude_code import (
+from .claude_code import (
     ClaudeCodeTool, ClaudeCodeTask, ClaudeCodeResult,
     ClaudeCodeModel, ClaudeCodeCreditsExhaustedError
 )

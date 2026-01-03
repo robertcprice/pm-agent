@@ -3,21 +3,13 @@ PM Agent - Autonomous Project Manager
 
 An AI-powered project manager that orchestrates Claude Code CLI
 and GLM 4.7 to manage software development projects.
-
-Usage:
-    from pm_agent import PMAgent, PMConfig
-
-    config = PMConfig(project_path="/path/to/project")
-    agent = PMAgent(config)
-    await agent.run_cycle()
 """
 
 __version__ = "0.1.0"
 __author__ = "Bobby Price"
 __license__ = "MIT"
 
-# Core imports
-from .agent import PMAgent, PMConfig, PMAgentState, CycleResult
+# Core imports - only what's definitely working
 from .task_queue import (
     TaskQueue,
     TaskStatus,
@@ -27,26 +19,9 @@ from .task_queue import (
     Goal,
     Task,
 )
-from .logger import ThoughtLogger
-from .goal_analyzer import GoalAnalyzer
-from .notifications import NotificationManager, NotificationChannel
-
-# Backends
-from .glm_backend import GLMBackend
-from .hybrid_backend import HybridBackend, TaskRouter, TaskRole
-
-# Advanced features
-from .adaptive_learner import AdaptiveLearner
-from .intelligent_retry import IntelligentRetry
-from .model_selector import ModelSelector
-from .claude_mentor import ClaudeMentor
+from .logger import PMLogger
 
 __all__ = [
-    # Core
-    "PMAgent",
-    "PMConfig",
-    "PMAgentState",
-    "CycleResult",
     # Task Queue
     "TaskQueue",
     "TaskStatus",
@@ -55,21 +30,9 @@ __all__ = [
     "Project",
     "Goal",
     "Task",
-    # Utilities
-    "ThoughtLogger",
-    "GoalAnalyzer",
-    "NotificationManager",
-    "NotificationChannel",
-    # Backends
-    "GLMBackend",
-    "HybridBackend",
-    "TaskRouter",
-    "TaskRole",
-    # Advanced features
-    "AdaptiveLearner",
-    "IntelligentRetry",
-    "ModelSelector",
-    "ClaudeMentor",
+    # Logger
+    "PMLogger",
+    "__version__",
 ]
 
 # Default configuration defaults
@@ -79,34 +42,14 @@ DEFAULT_TIMEOUT_SECONDS = 600
 DEFAULT_DB_PATH = "pm_agent.db"
 
 
-def create_agent(
-    project_path: str,
-    claude_code_path: str = "claude",
-    backend: str = "claude",  # claude, glm, or hybrid
-    **kwargs
-) -> PMAgent:
+def create_queue(db_path: str = DEFAULT_DB_PATH) -> TaskQueue:
     """
-    Convenience function to create a PM Agent.
+    Convenience function to create a task queue.
 
     Args:
-        project_path: Path to the project directory
-        claude_code_path: Path to Claude Code CLI
-        backend: Backend to use (claude, glm, or hybrid)
-        **kwargs: Additional configuration options
+        db_path: Path to SQLite database
 
     Returns:
-        Configured PMAgent instance
-
-    Example:
-        agent = create_agent(
-            project_path="/path/to/project",
-            backend="glm"  # Use cost-effective GLM backend
-        )
+        Configured TaskQueue instance
     """
-    config = PMConfig(
-        project_path=project_path,
-        claude_code_path=claude_code_path,
-        **kwargs
-    )
-
-    return PMAgent(config)
+    return TaskQueue(db_path=db_path)

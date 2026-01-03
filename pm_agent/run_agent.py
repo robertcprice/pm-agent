@@ -16,7 +16,7 @@ import yaml
 
 from .agent import PMAgent, PMConfig
 from .task_queue import TaskQueue, Project
-from ..tools.claude_code import ClaudeCodeTool
+from .claude_code import ClaudeCodeTool
 
 
 logging.basicConfig(

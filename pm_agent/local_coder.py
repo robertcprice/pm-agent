@@ -17,7 +17,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Callable
 
-from ..tools.claude_code import ClaudeCodeResult, ClaudeCodeTask, TaskComplexity
+from .claude_code import ClaudeCodeResult, ClaudeCodeTask, TaskComplexity
 from .task_queue import Task
 
 logger = logging.getLogger(__name__)

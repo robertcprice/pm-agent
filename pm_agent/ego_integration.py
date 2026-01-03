@@ -17,7 +17,7 @@ from typing import List, Dict, Any, Optional, Tuple
 from pathlib import Path
 
 from .task_queue import Task, Goal, TaskPriority
-from ..tools.claude_code import ClaudeCodeResult
+from .claude_code import ClaudeCodeResult
 
 logger = logging.getLogger(__name__)
 
